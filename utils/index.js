@@ -41,13 +41,10 @@ export const sendSMS = async (
     const numbers = contact.map((n) => n.mobile);
     console.log(msg, numbers);
 
-    const response = await axios.post(
-      "https://e5f7-2409-408c-ad0a-51f3-2831-8c3f-f4e2-e935.ngrok.io/sms",
-      {
-        to: numbers,
-        message: msg,
-      }
-    );
+    const response = await axios.post("https://sos-alert.onrender.com/sms", {
+      to: numbers,
+      message: msg,
+    });
     console.log(response.data);
 
     if (response.status === 200) {
