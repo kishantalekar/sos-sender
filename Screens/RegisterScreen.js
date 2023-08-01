@@ -6,23 +6,33 @@ import {
   Image,
   KeyboardAvoidingView,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { signIn, signUp } from "../api/AuthApi";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
+import { useToast } from "react-native-toast-notifications";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
   const navigation = useNavigation();
   const handleSignUp = async () => {
-    const res = await signUp(email, password);
-    if (res) {
-      //   alert("user is correct");
-      navigation.navigate("MainTab");
-    } else {
-      alert("something went wrong");
+    setLoading(true);
+    try {
+      const res = await signUp(email, password);
+      if (res) {
+        navigation.navigate("MainTab");
+        toast.show("Account created successfully", { type: "success" });
+      } else {
+        alert("something went wrong");
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -63,7 +73,11 @@ const RegisterScreen = () => {
         </View>
 
         <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
-          <Text style={styles.buttonText}>SIGN UP</Text>
+          {loading ? (
+            <ActivityIndicator color={"white"} />
+          ) : (
+            <Text style={styles.buttonText}>SIGN UP</Text>
+          )}
         </TouchableOpacity>
 
         <View style={styles.orSeparator}>
@@ -72,12 +86,12 @@ const RegisterScreen = () => {
           <View style={styles.line}></View>
         </View>
 
-        <TouchableOpacity style={styles.googleButton}>
+        {/* <TouchableOpacity style={styles.googleButton}>
           <Image
             source={require("../assets/google.png")}
             style={styles.googleIcon}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View style={styles.loginTextContainer}>
           <Text style={styles.loginText}>Already have an account?</Text>

@@ -4,7 +4,11 @@ import { ToastProvider } from "react-native-toast-notifications";
 
 export default function App() {
   return (
-    <ToastProvider swipeEnabled={true} offsetBottom={120}>
+    <ToastProvider
+      swipeEnabled={true}
+      offsetBottom={120}
+      warningColor="#f62800"
+    >
       <Navigation />
     </ToastProvider>
   );

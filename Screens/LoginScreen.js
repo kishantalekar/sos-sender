@@ -12,22 +12,28 @@ import React, { useEffect, useState } from "react";
 import { signIn } from "../api/AuthApi";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
+import { useToast } from "react-native-toast-notifications";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
+  const toast = useToast();
   const handleSignUp = async () => {
+    setLoading(true);
     try {
       const res = await signIn(email, password);
       if (res) {
         navigation.navigate("MainTab");
+        toast.show("Login successfully", { type: "success" });
       } else {
         alert("something went wrong");
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -51,66 +57,62 @@ const LoginScreen = () => {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      {loading ? (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <ActivityIndicator size={"large"} />
+      <View style={styles.formContainer}>
+        <Text style={styles.title}>LOGIN </Text>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your email"
+            keyboardType="email-address"
+            placeholderTextColor="gray"
+            value={email}
+            onChangeText={(e) => setEmail(e)}
+          />
         </View>
-      ) : (
-        <View style={styles.formContainer}>
-          <Text style={styles.title}>LOGIN </Text>
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Email</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your email"
-              keyboardType="email-address"
-              placeholderTextColor="gray"
-              value={email}
-              onChangeText={(e) => setEmail(e)}
-            />
-          </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your password"
+            placeholderTextColor="gray"
+            // secureTextEntry
+            value={password}
+            onChangeText={(e) => setPassword(e)}
+            keyboardType="visible-password"
+          />
+        </View>
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your password"
-              placeholderTextColor="gray"
-              // secureTextEntry
-              value={password}
-              onChangeText={(e) => setPassword(e)}
-              keyboardType="visible-password"
-            />
-          </View>
-
-          <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
+        <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
+          {loading ? (
+            <ActivityIndicator color={"white"} />
+          ) : (
             <Text style={styles.buttonText}>LOGIN</Text>
-          </TouchableOpacity>
+          )}
+        </TouchableOpacity>
 
-          <View style={styles.orSeparator}>
-            <View style={styles.line}></View>
-            <Text style={styles.orText}>OR</Text>
-            <View style={styles.line}></View>
-          </View>
-
-          <TouchableOpacity style={styles.googleButton}>
-            <Image
-              source={require("../assets/google.png")}
-              style={styles.googleIcon}
-            />
-          </TouchableOpacity>
-
-          <View style={styles.loginTextContainer}>
-            <Text style={styles.loginText}>Need an account?</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-              <Text style={styles.loginLink}>SIGN UP</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.orSeparator}>
+          <View style={styles.line}></View>
+          <Text style={styles.orText}>OR</Text>
+          <View style={styles.line}></View>
         </View>
-      )}
+        {/* 
+        <TouchableOpacity style={styles.googleButton}>
+          <Image
+            source={require("../assets/google.png")}
+            style={styles.googleIcon}
+          />
+        </TouchableOpacity>
+ */}
+        <View style={styles.loginTextContainer}>
+          <Text style={styles.loginText}>Need an account?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <Text style={styles.loginLink}>SIGN UP</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -123,6 +125,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
     backgroundColor: "white",
+    justifyContent: "center",
   },
   formContainer: {
     gap: 20,
@@ -139,6 +142,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 28,
     fontFamily: "sans-serif",
+    textAlign: "center",
   },
   inputContainer: {
     gap: 4,

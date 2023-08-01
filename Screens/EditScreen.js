@@ -8,13 +8,16 @@ import { GET_SOS_MESSAGE } from "../constants/storage";
 import { useToast } from "react-native-toast-notifications";
 import { useNavigation } from "@react-navigation/native";
 const EditScreen = () => {
-  const [sosMessage, setSosMessage] = useState("");
+  const [sosMessage, setSosMessage] = useState(
+    "Help me! its an emergency i am at the below location Please Help me."
+  );
   const toast = useToast();
   const navigation = useNavigation();
   useEffect(() => {
     const getSosMessage = async () => {
       const data = await getItem(GET_SOS_MESSAGE);
-      setSosMessage(JSON.parse(data));
+      console.log(data, "from");
+      if (data) setSosMessage(JSON.parse(data));
     };
     getSosMessage();
   }, []);
@@ -54,15 +57,17 @@ const EditScreen = () => {
         <View
           style={{
             borderWidth: 0.8,
-            paddingHorizontal: 20,
-            paddingVertical: 20,
+            // paddingHorizontal: 20,
+            // paddingVertical: 20,
             borderRadius: 15,
           }}
         >
           <TextInput
             value={sosMessage}
             onChangeText={(e) => setSosMessage(e)}
-            style={{}}
+            style={{ paddingHorizontal: 10, paddingVertical: 10 }}
+            numberOfLines={10}
+            multiline
           />
         </View>
       </View>
@@ -77,6 +82,7 @@ const EditScreen = () => {
             gap: 10,
           }}
         >
+          <Text>Your Name</Text>
           <Text>{sosMessage}</Text>
           <Text style={{ marginTop: 20 }}>My Last Location was:</Text>
           <Text style={{ textDecorationLine: "underline" }}>

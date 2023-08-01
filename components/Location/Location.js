@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
 
@@ -56,6 +56,7 @@ const LocationComponent = ({
         // console.log("Address:", address);
       } else {
         console.log("No address found");
+        getLocationAsync();
       }
     } catch (error) {
       console.log("Error reverse geocoding:", error);
@@ -77,29 +78,34 @@ const LocationComponent = ({
         <Text style={styles.addressHeading}>Your current address:</Text>
 
         {loading ? (
-          <Text style={styles.currentAddress}>Loading.....</Text>
+          <ActivityIndicator color={"black"} />
         ) : (
           <Text style={styles.currentAddress}>
             {location?.district} {location?.city} - {location?.postalCode}
           </Text>
         )}
 
-        {location?.street && (
-          <Text style={styles.currentAddress}>
-            {location?.streetNumber}
-            {location?.street}
-          </Text>
+        {!loading ? (
+          location?.street && (
+            <>
+              <Text style={styles.currentAddress}>
+                {location?.streetNumber}
+                {location?.street}
+              </Text>
+              <Text
+                style={{
+                  color: "gray",
+                  fontWeight: "400",
+                  fontSize: 12,
+                }}
+              >
+                {latitude} ,{longitude}
+              </Text>
+            </>
+          )
+        ) : (
+          <></>
         )}
-
-        <Text
-          style={{
-            color: "gray",
-            fontWeight: "400",
-            fontSize: 12,
-          }}
-        >
-          {latitude} ,{longitude}
-        </Text>
       </View>
     </View>
   );

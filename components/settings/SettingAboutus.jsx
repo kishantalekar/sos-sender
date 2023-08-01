@@ -1,11 +1,25 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import { AntDesign, Feather, MaterialIcons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Feather,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { onLogOut } from "../../api/AuthApi";
+import { auth } from "../../firebase";
+import { clearAll } from "../../storage/storage";
 const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
   const navigation = useNavigation();
+  const handleLogout = async () => {
+    await onLogOut();
+    await clearAll();
+    navigation.navigate("Login");
+  };
+
   return (
-    <View style={{ marginTop: 20, flex: 1 }}>
+    <View style={{ marginTop: 10, flex: 1, marginBottom: 25 }}>
       <View
         style={{
           flexDirection: "row",
@@ -65,6 +79,20 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
           {/* <Feather name="info" size={24} color="#4e9cb1" /> */}
           <MaterialIcons name="privacy-tip" size={24} color="#4e9cb1" />
           <Text style={{ fontSize: 18 }}>Privacy Policies</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={handleLogout}
+          style={{
+            flexDirection: "row",
+            gap: 20,
+            alignItems: "center",
+            marginTop: 20,
+          }}
+        >
+          {/* <Feather name="info" size={24} color="#4e9cb1" /> */}
+          {/* <MaterialIcons name="privacy-tip" size={24} color="#4e9cb1" /> */}
+          <MaterialCommunityIcons name="logout" size={24} color="#4e9cb1" />
+          <Text style={{ fontSize: 18 }}>Log out</Text>
         </TouchableOpacity>
       </View>
     </View>

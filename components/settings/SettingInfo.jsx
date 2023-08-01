@@ -103,7 +103,7 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
             Allow The App to send your info
           </Text>
           <ToggleSwitch
-            isOn={toggleInfo}
+            isOn={toggleInfo || false}
             onColor="#4e9cb1"
             offColor="#cae1e8"
             labelStyle={{

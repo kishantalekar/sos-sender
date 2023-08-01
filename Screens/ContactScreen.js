@@ -124,7 +124,16 @@ const ContactScreen = ({ homeScreenSetContact }) => {
                 />
               ))
             ) : (
-              <Text>You have not added any contacts</Text>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flex: 1,
+                  marginTop: 200,
+                }}
+              >
+                <Text>You have not added any contacts</Text>
+              </View>
             )}
           </View>
         </ScrollView>
