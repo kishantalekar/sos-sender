@@ -8,7 +8,7 @@ import {
   ContextComponent,
 } from "../components";
 import { getContacts, getItem } from "../storage/storage";
-import { sendSMS } from "../utils";
+import { sendImage, sendSMS } from "../utils";
 import CountdownTimer from "../components/CountdownTimer";
 import { useToast } from "react-native-toast-notifications";
 import {
@@ -30,6 +30,7 @@ const HomeScreen = ({ contacts }) => {
   const [showCountDownTimer, setShowCountDownTimer] = useState(false);
   const [countdownTime, setCountdownTime] = useState(5);
   const [isCancelled, setIsCancelled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const toast = useToast();
 
@@ -53,6 +54,10 @@ const HomeScreen = ({ contacts }) => {
   }, [contacts]);
 
   const handleSms = async () => {
+    const contacts = JSON.parse(await getItem(GET_ALL_CONTACTS));
+    if (contacts.length == 0 || contacts == null) {
+      return alert("Add Contacts Before sending sms");
+    }
     let data = await getItem(COUNTDOWN_TIMER);
     if (data == null) {
       data = 5;
@@ -63,25 +68,54 @@ const HomeScreen = ({ contacts }) => {
   };
 
   const sendSmsAfterCountdown = async () => {
+    setLoading(true);
     try {
       const contacts = JSON.parse(await getItem(GET_ALL_CONTACTS));
-      const msg = JSON.parse(await getItem(GET_SOS_MESSAGE));
-      const name = JSON.parse(await getItem(USERNAME));
+      const msg =
+        JSON.parse(await getItem(GET_SOS_MESSAGE)) ||
+        "Help me! its an emergency i am at the below location Please Help me.";
+      const name = JSON.parse(await getItem(USERNAME)) || "mandeep";
 
       // console.log(contacts, msg, location, latitude, longitude, "from ");
-      const data = await sendSMS(
-        contacts,
-        msg,
-        location,
-        latitude,
-        longitude,
-        name,
-        imageUri
-      );
-      console.log(data, "from homescreen");
-      sendToast(data);
+      if (name == undefined || name == null || name.length < 0) {
+        return alert("Please edit your name");
+      }
+      if (msg == undefined || msg == null || msg.length < 0) {
+        return alert("Looks like your msg is empty");
+      }
+      if (imageUri) {
+        try {
+          const imageData = await sendImage(
+            imageUri,
+            contacts,
+            msg,
+            location,
+            latitude,
+            longitude,
+            name
+          );
+          sendToast(imageData);
+        } catch (error) {
+        } finally {
+          setImageUri("");
+        }
+      } else {
+        const data = await sendSMS(
+          contacts,
+          msg,
+          location,
+          latitude,
+          longitude,
+          name,
+          imageUri
+        );
+
+        sendToast(data);
+      }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   const sendToast = (data) => {
@@ -128,13 +162,15 @@ const HomeScreen = ({ contacts }) => {
     };
     checkProfileUpdate();
   }, []);
+  // console.log(imageUri);
+
   return (
     <View style={styles.container}>
       {!showCountDownTimer ? (
         <>
           <Header />
-          <SendAlertComponent sendAlert={handleSms} />
-          {/* <AlertImage imageUri={imageUri} setImageUri={setImageUri} /> */}
+          <SendAlertComponent sendAlert={handleSms} loading={loading} />
+          <AlertImage imageUri={imageUri} setImageUri={setImageUri} />
           {/* <ContextComponent /> */}
 
           <Location

@@ -6,13 +6,18 @@ import { color } from "../styles/color";
 import { getItem, setItem } from "../storage/storage";
 import { USERNAME, USER_MOBILE_NUMBER } from "../constants/storage";
 import { useNavigation } from "@react-navigation/native";
+import { useToast } from "react-native-toast-notifications";
 
 const ProfileScreen = () => {
   const [userName, setUserName] = useState("");
   const [userMobileNumber, setUserMobileNumber] = useState("");
+  const navigation = useNavigation();
+  const toast = useToast();
   const handleSave = async () => {
     await setItem(USERNAME, userName);
     await setItem(USER_MOBILE_NUMBER, userMobileNumber);
+    toast.show("Profile updated", { type: "success" });
+    navigation.goBack();
   };
   useEffect(() => {
     const getUserData = async () => {
@@ -24,7 +29,6 @@ const ProfileScreen = () => {
 
     getUserData();
   }, []);
-  const navigation = useNavigation();
   return (
     <View
       style={{

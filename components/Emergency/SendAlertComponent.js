@@ -1,8 +1,14 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 
 //https://dribbble.com/shots/9146048-HelpRail-App/attachments/1195621?mode=media
-const SendAlertComponent = ({ sendAlert }) => {
+const SendAlertComponent = ({ sendAlert, loading }) => {
   const handleAlert = async () => {
     try {
       sendAlert();
@@ -21,7 +27,13 @@ const SendAlertComponent = ({ sendAlert }) => {
         <View style={styles.alert2}>
           <View style={styles.alert1}>
             <TouchableOpacity style={styles.alert} onPress={handleAlert}>
-              <Text style={styles.alertText}>HELP ME!</Text>
+              {loading ? (
+                <>
+                  <ActivityIndicator color={"white"} />
+                </>
+              ) : (
+                <Text style={styles.alertText}>HELP ME!</Text>
+              )}
             </TouchableOpacity>
           </View>
         </View>

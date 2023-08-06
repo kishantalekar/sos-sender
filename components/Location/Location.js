@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
+// import SkeletonContent from "react-native-skeleton-content";
 
 const LocationComponent = ({
   location,
@@ -74,15 +75,17 @@ const LocationComponent = ({
         source={require("../../assets/sos2.png")}
         style={styles.profileImage}
       />
-      <View style={styles.addressMain}>
-        <Text style={styles.addressHeading}>Your current address:</Text>
 
+      <View style={styles.addressMain}>
         {loading ? (
           <ActivityIndicator color={"black"} />
         ) : (
-          <Text style={styles.currentAddress}>
-            {location?.district} {location?.city} - {location?.postalCode}
-          </Text>
+          <>
+            <Text style={styles.addressHeading}>Your current address:</Text>
+            <Text style={styles.currentAddress}>
+              {location?.district} {location?.city} - {location?.postalCode}
+            </Text>
+          </>
         )}
 
         {!loading ? (

@@ -73,7 +73,7 @@ export default function SettingSOS({ Countdown, setCountdown }) {
           <TouchableOpacity
             style={{ paddingRight: 4 }}
             onPress={() =>
-              setCountdown((prev) => (prev == 0 ? prev : prev - 1))
+              setCountdown((prev) => (prev == 1 ? prev : prev - 1))
             }
           >
             <AntDesign name="minuscircleo" size={22} color="#4e9cb1" />

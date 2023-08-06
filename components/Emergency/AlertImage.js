@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+// import Perm
 
 import Evilcons from "react-native-vector-icons/EvilIcons";
+import { sendImage } from "../../utils";
 const AlertImage = ({ imageUri, setImageUri }) => {
   const takeImage = async () => {
     const result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
+      allowsEditing: false,
       aspect: [1, 1],
       quality: 1,
     });
 
     if (!result.canceled) {
-      console.log(result.uri);
-      setImageUri(result.uri);
-      // uploadImage(result.uri);
+      setImageUri(result.assets[0].uri);
     }
   };
 

@@ -26,8 +26,6 @@ export const setMyContacts = async (value) => {
     // save error
     console.log(e);
   }
-
-  console.log("Done.");
 };
 export const getContacts = async () => {
   try {
@@ -39,8 +37,6 @@ export const getContacts = async () => {
   } catch (e) {
     console.log(e); // read error
   }
-
-  console.log("Done.");
 };
 
 export const clearAll = async () => {
@@ -49,6 +45,4 @@ export const clearAll = async () => {
   } catch (e) {
     // clear error
   }
-
-  console.log("Done.");
 };
