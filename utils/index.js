@@ -154,3 +154,37 @@ export const sendImage = async (
     console.error("Error sending image:", error);
   }
 };
+
+//send phone  number for verification
+
+export const sendNotification = async () => {
+  const apiUrl = `${BACKEND_SERVER_URL}/send-verification`;
+  const response = await fetch(apiUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ phoneNumber: [9353167354] }),
+  }).catch((e) => console.log(e));
+
+  // Convert the response to JSON before logging
+  const jsonResponse = await response.json();
+
+  if (response.ok) {
+    console.log(jsonResponse);
+  }
+};
+
+export const verifyOtp = async () => {
+  const data = {
+    phoneNumber: 9353167354,
+    otp: 12345,
+  };
+  const apiUrl = `${BACKEND_SERVER_URL}/verify-otp`;
+  const response = await fetch("/verify-otp", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(data),
+  }).catch((e) => console.log(e));
+  const check = await response.json();
+  const text = response.ok ? check.status : response.statusText;
+  console.log(text);
+};

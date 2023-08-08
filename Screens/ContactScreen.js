@@ -2,15 +2,19 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { getContacts, setMyContacts } from "../storage/storage";
 import { AddContact, ContactInfo } from "../components";
+import { sendNotification } from "../utils";
 
 const ContactScreen = ({ homeScreenSetContact }) => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [active, setActive] = useState(false);
   const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleAddContact = async () => {
+    setLoading(true);
     try {
+      // await sendNotification();
       if (!name || !mobile) {
         alert("Name and Mobile fields are required");
         return;
@@ -38,6 +42,8 @@ const ContactScreen = ({ homeScreenSetContact }) => {
       setName("");
     } catch (error) {
       console.log(error, "failed to add a contact");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,6 +91,7 @@ const ContactScreen = ({ homeScreenSetContact }) => {
         name={name}
         mobile={mobile}
         canAdd={contacts.length < 5}
+        loading={loading}
       />
       <View style={{ marginTop: 10, flex: 1 }}>
         <Text

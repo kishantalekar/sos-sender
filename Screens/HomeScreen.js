@@ -170,7 +170,7 @@ const HomeScreen = ({ contacts }) => {
         <>
           <Header />
           <SendAlertComponent sendAlert={handleSms} loading={loading} />
-          <AlertImage imageUri={imageUri} setImageUri={setImageUri} />
+          {/* <AlertImage imageUri={imageUri} setImageUri={setImageUri} /> */}
           {/* <ContextComponent /> */}
 
           <Location

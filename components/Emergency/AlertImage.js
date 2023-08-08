@@ -31,7 +31,9 @@ const AlertImage = ({ imageUri, setImageUri }) => {
             <Text style={{ fontWeight: 400, fontSize: 16 }}>Take a photo</Text>
           </>
         ) : (
-          <Text>Photo Selected</Text>
+          <TouchableOpacity onPress={() => setImageUri("")}>
+            <Text>Remove photo</Text>
+          </TouchableOpacity>
         )}
       </TouchableOpacity>
 

@@ -26,7 +26,8 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
       const name = await getItem(USERNAME);
       console.log(name);
       const number = await getItem(USER_MOBILE_NUMBER);
-      const toggle = await getItem(ALLOW_INFO_SHARE);
+      const toggle = (await getItem(ALLOW_INFO_SHARE)) || true;
+
       setUserName(JSON.parse(name));
       setUserMobileNumber(JSON.parse(number));
 

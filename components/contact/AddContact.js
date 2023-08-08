@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -20,6 +21,7 @@ const AddContact = ({
   setMobile,
   handleAddContact,
   canAdd,
+  loading,
 }) => {
   const shadowStyle =
     Platform.OS === "ios"
@@ -132,14 +134,18 @@ const AddContact = ({
               }}
               onPress={canAdd ? handleAddContact : null}
             >
-              <Text
-                style={{
-                  // padding: 10,
-                  color: "white",
-                }}
-              >
-                Save
-              </Text>
+              {loading ? (
+                <ActivityIndicator color={"white"} />
+              ) : (
+                <Text
+                  style={{
+                    // padding: 10,
+                    color: "white",
+                  }}
+                >
+                  Save
+                </Text>
+              )}
             </TouchableOpacity>
           </View>
         ) : null}

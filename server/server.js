@@ -106,6 +106,35 @@ app.post("/image", upload.single("image"), async (req, res) => {
   }
 });
 
+app.post("/send-verification", async (req, res) => {
+  console.log(req.body.phoneNumber);
+  client.verify.v2
+    .services(process.env.VERIFY_SERVICE_SID)
+    .verifications.create({ to: `+919353167354`, channel: "sms" })
+    .then((verification) => console.log(verification.status))
+    .catch((e) => {
+      console.log(e);
+      res.status(500).send(e);
+    });
+
+  res.sendStatus(200);
+});
+
+app.post("/verify-otp", async (req, res) => {
+  const check = await client.verify._v2
+    .services(process.env.VERIFY_SERVICE_SID)
+    .verificationChecks.create({
+      to: `+91${req.body.phoneNumber}`,
+      code: req.body.otp,
+    })
+    .catch((e) => {
+      console.log(e);
+      res.status(500).send(e);
+    });
+
+  res.status(200).send(check);
+});
+
 const port = process.env.PORT; // Specify the port number you want to listen on
 
 app.listen(port, () => {

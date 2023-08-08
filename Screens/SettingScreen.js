@@ -15,7 +15,7 @@ import {
   SettingSOS,
 } from "../components";
 const SettingScreen = () => {
-  const [toggleInfo, setToggleInfo] = useState(false);
+  const [toggleInfo, setToggleInfo] = useState(true);
   const [Countdown, setCountdown] = useState(0);
   const [isInstruction, setIsInstruction] = useState(false);
   return (

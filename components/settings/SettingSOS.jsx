@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Ionicons, AntDesign, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { getItem, setItem } from "../../storage/storage";
-import { COUNTDOWN_TIMER } from "../../constants/storage";
+import { COUNTDOWN_TIMER, GET_ALL_CONTACTS } from "../../constants/storage";
 
 export default function SettingSOS({ Countdown, setCountdown }) {
   const navigation = useNavigation();
+  const [totalNumbers, setTotalNumbers] = useState(0);
   const handleCountDown = async () => {
     try {
       await setItem(COUNTDOWN_TIMER, Countdown);
@@ -19,6 +20,17 @@ export default function SettingSOS({ Countdown, setCountdown }) {
   useEffect(() => {
     handleCountDown();
   }, [Countdown]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const numbers = JSON.parse(await getItem(GET_ALL_CONTACTS));
+      const cd = JSON.parse(await getItem(COUNTDOWN_TIMER));
+
+      setCountdown(cd);
+      setTotalNumbers(numbers.length);
+    };
+    getData();
+  }, []);
 
   return (
     <View style={{ marginTop: 20, flex: 1 }}>
@@ -94,7 +106,9 @@ export default function SettingSOS({ Countdown, setCountdown }) {
               style={{ paddingLeft: 5 }}
             /> */}
           <FontAwesome name="group" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18 }}>Total Registered Numbers :5</Text>
+          <Text style={{ fontSize: 18 }}>
+            Total Registered Numbers :{totalNumbers}
+          </Text>
         </View>
       </View>
     </View>

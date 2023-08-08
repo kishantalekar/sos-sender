@@ -22,10 +22,7 @@ const ContactInfo = ({
         };
   return (
     <View style={[styles.contactInfo, shadowStyle]}>
-      <Image
-        source={require("../../assets/naruto.jpeg")}
-        style={styles.image}
-      />
+      <Image source={require("../../assets/sos1.png")} style={styles.image} />
       <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 20, fontWeight: "500" }}>{name}</Text>
         <Text style={{ color: "gray", fontWeight: "500" }}>{mobile}</Text>
