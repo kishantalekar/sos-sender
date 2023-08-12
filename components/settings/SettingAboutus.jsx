@@ -53,7 +53,7 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
         >
           {/* <Ionicons name="person" size={24} color="#4e9cb1" /> */}
           <AntDesign name="eyeo" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18 }}>View Instructions</Text>
+          <Text style={{ fontSize: 16 }}>View Instructions</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("About")}
@@ -65,9 +65,9 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
           }}
         >
           <Feather name="info" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18 }}>About us</Text>
+          <Text style={{ fontSize: 16 }}>About us</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.navigate("Policy")}
           style={{
             flexDirection: "row",
@@ -77,9 +77,9 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
           }}
         >
           {/* <Feather name="info" size={24} color="#4e9cb1" /> */}
-          <MaterialIcons name="privacy-tip" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18 }}>Privacy Policies</Text>
-        </TouchableOpacity>
+        {/* <MaterialIcons name="privacy-tip" size={24} color="#4e9cb1" />
+          <Text style={{ fontSize: 16 }}>Privacy Policies</Text>
+        </TouchableOpacity>  */}
         <TouchableOpacity
           onPress={handleLogout}
           style={{
@@ -92,7 +92,7 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
           {/* <Feather name="info" size={24} color="#4e9cb1" /> */}
           {/* <MaterialIcons name="privacy-tip" size={24} color="#4e9cb1" /> */}
           <MaterialCommunityIcons name="logout" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18 }}>Log out</Text>
+          <Text style={{ fontSize: 16 }}>Log out</Text>
         </TouchableOpacity>
       </View>
     </View>

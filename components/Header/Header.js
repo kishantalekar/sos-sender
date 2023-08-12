@@ -12,7 +12,7 @@ const Header = () => {
     };
     getData();
   }, []);
-  // console.log(userName);
+  console.log(userName);
   return (
     <View style={styles.container}>
       <View>
@@ -24,7 +24,7 @@ const Header = () => {
         ) : (
           <>
             <Text style={styles.welcomeText}>Welcome back</Text>
-            <Text style={styles.name}>Kishan Talekar</Text>
+            <Text style={styles.name}>{userName}</Text>
           </>
         )}
       </View>

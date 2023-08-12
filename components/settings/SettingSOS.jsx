@@ -66,7 +66,7 @@ export default function SettingSOS({ Countdown, setCountdown }) {
         <View style={{ flexDirection: "row", gap: 20 }}>
           {/* <Ionicons name="person" size={24} color="#4e9cb1" /> */}
           <AntDesign name="message1" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18 }}>SOS Message</Text>
+          <Text style={{ fontSize: 16 }}>SOS Message</Text>
         </View>
         <View
           style={{
@@ -77,7 +77,7 @@ export default function SettingSOS({ Countdown, setCountdown }) {
           }}
         >
           <Ionicons name="timer" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18, flex: 1 }}>SOS Send Countdown</Text>
+          <Text style={{ fontSize: 16, flex: 1 }}>SOS Send Countdown</Text>
           <TouchableOpacity onPress={() => setCountdown((prev) => prev + 1)}>
             <AntDesign name="pluscircleo" size={22} color="#4e9cb1" />
           </TouchableOpacity>
@@ -106,7 +106,7 @@ export default function SettingSOS({ Countdown, setCountdown }) {
               style={{ paddingLeft: 5 }}
             /> */}
           <FontAwesome name="group" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18 }}>
+          <Text style={{ fontSize: 16 }}>
             Total Registered Numbers :{totalNumbers}
           </Text>
         </View>

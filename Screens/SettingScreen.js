@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState } from "react";
 import {
   Ionicons,
@@ -27,24 +27,29 @@ const SettingScreen = () => {
         flex: 1,
       }}
     >
-      {!isInstruction ? (
-        <>
-          <View style={{ marginBottom: 20 }}>
-            <Text style={{ fontWeight: 500, fontSize: 20 }}>Settings</Text>
-          </View>
-          <SettingInfo toggleInfo={toggleInfo} setToggleInfo={setToggleInfo} />
-          <SettingSOS Countdown={Countdown} setCountdown={setCountdown} />
-          <SettingAboutus
+      <View style={{ marginBottom: 20 }}>
+        <Text style={{ fontWeight: 500, fontSize: 20 }}>Settings</Text>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {!isInstruction ? (
+          <>
+            <SettingInfo
+              toggleInfo={toggleInfo}
+              setToggleInfo={setToggleInfo}
+            />
+            <SettingSOS Countdown={Countdown} setCountdown={setCountdown} />
+            <SettingAboutus
+              isInstruction={isInstruction}
+              setIsInstruction={setIsInstruction}
+            />
+          </>
+        ) : (
+          <SettingInstruction
             isInstruction={isInstruction}
             setIsInstruction={setIsInstruction}
           />
-        </>
-      ) : (
-        <SettingInstruction
-          isInstruction={isInstruction}
-          setIsInstruction={setIsInstruction}
-        />
-      )}
+        )}
+      </ScrollView>
     </View>
   );
 };

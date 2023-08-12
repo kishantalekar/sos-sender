@@ -49,7 +49,7 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
           YOUR INFORMATION
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-          <Text style={{ color: "#4892a6", fontSize: 16, fontWeight: 500 }}>
+          <Text style={{ color: "#4892a6", fontSize: 14, fontWeight: 500 }}>
             Edit
           </Text>
         </TouchableOpacity>
@@ -69,7 +69,7 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
       >
         <View style={{ flexDirection: "row", gap: 20 }}>
           <Ionicons name="person" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18 }}>
+          <Text style={{ fontSize: 16 }}>
             {userName ? userName : "Update Your Name"}
           </Text>
         </View>
@@ -87,7 +87,7 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
             color="#4e9cb1"
             style={{ paddingLeft: 5 }}
           />
-          <Text style={{ fontSize: 18 }}>
+          <Text style={{ fontSize: 16 }}>
             {userMobileNumber ? `+91${userMobileNumber}` : "Add Your Number"}
           </Text>
         </View>
@@ -100,7 +100,7 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
           }}
         >
           <AntDesign name="sharealt" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 18, flex: 1 }}>
+          <Text style={{ fontSize: 16, flex: 1 }}>
             Allow The App to send your info
           </Text>
           <ToggleSwitch

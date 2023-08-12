@@ -49,12 +49,14 @@ const LocationComponent = ({
         latitude,
         longitude,
       });
+      console.log(response, "response");
 
       if (response.length > 0) {
         const address = response[0];
         // console.log("response", response);
         setLocation(address);
         // console.log("Address:", address);
+        setLoading(false);
       } else {
         console.log("No address found");
         getLocationAsync();
@@ -67,7 +69,6 @@ const LocationComponent = ({
   useEffect(() => {
     getLocationAsync();
   }, []);
-  // console.log(location);
 
   return (
     <View style={styles.container}>
@@ -148,13 +149,13 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   addressHeading: {
-    fontSize: 20,
+    fontSize: 16,
     paddingBottom: 2,
   },
   currentAddress: {
     color: "black",
-    fontSize: 16,
-    fontWeight: "300",
+    fontSize: 12,
+    fontWeight: 500,
   },
 });
 

@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "500",
-    fontSize: 28,
+    fontSize: 24,
     fontFamily: "sans-serif",
     textAlign: "center",
   },
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: "300",
-    fontSize: 26,
+    fontSize: 22,
   },
   input: {
     borderWidth: 0.8,
@@ -157,13 +157,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    fontSize: 18,
+    fontSize: 14,
   },
   signUpButton: {
     backgroundColor: "#ed5584",
     borderRadius: 15,
     paddingVertical: 18,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     elevation: 10,
   },
   buttonText: {
@@ -203,13 +203,13 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontWeight: "500",
-    fontSize: 20,
+    fontSize: 14,
     color: "gray",
   },
   loginLink: {
     textDecorationLine: "underline",
     fontWeight: "500",
-    fontSize: 20,
+    fontSize: 14,
     color: "gray",
   },
 });

@@ -95,7 +95,7 @@ const RegisterScreen = () => {
 
         <View style={styles.loginTextContainer}>
           <Text style={styles.loginText}>Already have an account?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Text style={styles.loginLink}>LOGIN</Text>
           </TouchableOpacity>
         </View>
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "500",
-    fontSize: 28,
+    fontSize: 18,
     fontFamily: "sans-serif",
   },
   inputContainer: {
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: "300",
-    fontSize: 26,
+    fontSize: 18,
   },
   input: {
     borderWidth: 0.8,
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    fontSize: 18,
+    fontSize: 16,
   },
   signUpButton: {
     backgroundColor: "#ed5584",
@@ -185,16 +185,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     gap: 4,
+    // maxWidth: 300,
   },
   loginText: {
     fontWeight: "500",
-    fontSize: 20,
+    fontSize: 14,
     color: "gray",
   },
   loginLink: {
     textDecorationLine: "underline",
     fontWeight: "500",
-    fontSize: 20,
+    fontSize: 14,
     color: "gray",
   },
 });

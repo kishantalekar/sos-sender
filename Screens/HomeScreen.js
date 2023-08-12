@@ -59,8 +59,12 @@ const HomeScreen = ({ contacts }) => {
       return alert("Add Contacts Before sending sms");
     }
     let data = await getItem(COUNTDOWN_TIMER);
-    if (data == null) {
+    if (data == null || data == undefined || data > 20) {
       data = 5;
+    }
+
+    if (data < 2) {
+      data = 3;
     }
     setCountdownTime(data);
     setIsCancelled(false);
