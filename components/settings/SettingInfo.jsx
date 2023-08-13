@@ -24,7 +24,7 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
   useEffect(() => {
     const getUserData = async () => {
       const name = await getItem(USERNAME);
-      console.log(name);
+      console.log(name, "from ");
       const number = await getItem(USER_MOBILE_NUMBER);
       const toggle = (await getItem(ALLOW_INFO_SHARE)) || true;
 

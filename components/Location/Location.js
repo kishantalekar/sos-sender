@@ -51,7 +51,7 @@ const LocationComponent = ({
       });
       console.log(response, "response");
 
-      if (response.length > 0) {
+      if (response?.length > 0) {
         const address = response[0];
         // console.log("response", response);
         setLocation(address);

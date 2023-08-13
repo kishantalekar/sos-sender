@@ -5,9 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 import { getItem, setItem } from "../../storage/storage";
 import { COUNTDOWN_TIMER, GET_ALL_CONTACTS } from "../../constants/storage";
 
-export default function SettingSOS({ Countdown, setCountdown }) {
+export default function SettingSOS({ Countdown, setCountdown, contacts }) {
   const navigation = useNavigation();
-  const [totalNumbers, setTotalNumbers] = useState(0);
+
   const handleCountDown = async () => {
     try {
       await setItem(COUNTDOWN_TIMER, Countdown);
@@ -23,11 +23,11 @@ export default function SettingSOS({ Countdown, setCountdown }) {
 
   useEffect(() => {
     const getData = async () => {
-      const numbers = JSON.parse(await getItem(GET_ALL_CONTACTS));
+      // const numbers = JSON.parse(await getItem(GET_ALL_CONTACTS));
       const cd = JSON.parse(await getItem(COUNTDOWN_TIMER));
 
       setCountdown(cd);
-      setTotalNumbers(numbers.length);
+      // setTotalNumbers(numbers?.length);
     };
     getData();
   }, []);
@@ -91,7 +91,7 @@ export default function SettingSOS({ Countdown, setCountdown }) {
             <AntDesign name="minuscircleo" size={22} color="#4e9cb1" />
           </TouchableOpacity>
         </View>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             gap: 20,
@@ -99,17 +99,17 @@ export default function SettingSOS({ Countdown, setCountdown }) {
             marginTop: 20,
           }}
         >
-          {/* <Foundation
+         <Foundation
               name="telephone"
               size={24}
               color="#4e9cb1"
               style={{ paddingLeft: 5 }}
-            /> */}
+            />
           <FontAwesome name="group" size={24} color="#4e9cb1" />
           <Text style={{ fontSize: 16 }}>
-            Total Registered Numbers :{totalNumbers}
+            Total Registered Numbers :{(contacts && contacts?.length) || 0}
           </Text>
-        </View>
+        </View> */}
       </View>
     </View>
   );

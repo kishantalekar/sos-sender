@@ -19,16 +19,25 @@ const ContactScreen = ({ homeScreenSetContact }) => {
         alert("Name and Mobile fields are required");
         return;
       }
-      const contactExits = contacts.some(
+
+      // Validate mobile number format (10 digits)
+      const mobileRegex = /^[0-9]{10}$/;
+      if (!mobile.match(mobileRegex)) {
+        alert("Mobile number must be 10 digits");
+        return;
+      }
+
+      const contactExists = contacts.some(
         (contact) => contact?.mobile === mobile
       );
-      if (contactExits) {
+      if (contactExists) {
         alert("Contact with the same mobile number already exists");
         return;
       }
+
       const newContact = { mobile, name };
       let updatedContacts = [];
-      if (contacts && contacts.length > 0) {
+      if (contacts && contacts?.length > 0) {
         updatedContacts = [...contacts, newContact];
       } else {
         updatedContacts = [newContact];
@@ -62,10 +71,13 @@ const ContactScreen = ({ homeScreenSetContact }) => {
   const removeContact = async (mobile) => {
     try {
       let newContactList = contacts;
+
       newContactList = newContactList.filter(
         (number) => number.mobile !== mobile
       );
+
       setContacts(newContactList);
+
       await setMyContacts(newContactList);
       await getAllContacts();
     } catch (error) {
@@ -90,7 +102,7 @@ const ContactScreen = ({ homeScreenSetContact }) => {
         setName={setName}
         name={name}
         mobile={mobile}
-        canAdd={contacts.length < 5}
+        canAdd={contacts?.length < 5}
         loading={loading}
       />
       <View style={{ marginTop: 10, flex: 1 }}>
@@ -119,7 +131,7 @@ const ContactScreen = ({ homeScreenSetContact }) => {
           showsVerticalScrollIndicator={false}
         >
           <View>
-            {contacts?.length > 0 ? (
+            {contacts && contacts?.length > 0 ? (
               contacts?.map((data, i) => (
                 <ContactInfo
                   name={data.name}

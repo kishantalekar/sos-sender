@@ -33,6 +33,8 @@ const LoginScreen = () => {
     } catch (error) {
       console.log(error);
     } finally {
+      setEmail("");
+      setPassword("");
       setLoading(false);
     }
   };

@@ -33,6 +33,8 @@ const RegisterScreen = () => {
     } catch (error) {
     } finally {
       setLoading(false);
+      setEmail("");
+      setPassword("");
     }
   };
   useEffect(() => {

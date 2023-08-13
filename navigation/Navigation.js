@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../Screens/HomeScreen";
 import ContactScreen from "../Screens/ContactScreen";
@@ -13,6 +13,8 @@ import EditScreen from "../Screens/EditScreen";
 import ProfileScreen from "../Screens/ProfileScreen";
 import AboutUsScreen from "../Screens/AboutUsScreen";
 import PoliciesScreen from "../Screens/PoliciesScreen";
+import { getItem } from "../storage/storage";
+import { Login_key } from "../constants/storage";
 
 function MyTabs() {
   const [contacts, setContacts] = useState([]);
@@ -68,13 +70,25 @@ function MyTabs() {
           ),
         }}
       >
-        {(props) => <SettingScreen />}
+        {(props) => <SettingScreen {...props} contacts={contacts} />}
       </Tab.Screen>
     </Tab.Navigator>
   );
 }
 const Navigation = () => {
   const Stack = createNativeStackNavigator();
+  const [login, setLogin] = useState(false);
+  useEffect(() => {
+    getLogin();
+  }, []);
+  const getLogin = async () => {
+    const isLogin = JSON.parse(await getItem(Login_key));
+    if (isLogin && isLogin === true) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>

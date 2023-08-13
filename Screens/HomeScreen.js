@@ -55,7 +55,7 @@ const HomeScreen = ({ contacts }) => {
 
   const handleSms = async () => {
     const contacts = JSON.parse(await getItem(GET_ALL_CONTACTS));
-    if (contacts.length == 0 || contacts == null) {
+    if ((contacts && contacts?.length == 0) || contacts == null) {
       return alert("Add Contacts Before sending sms");
     }
     let data = await getItem(COUNTDOWN_TIMER);

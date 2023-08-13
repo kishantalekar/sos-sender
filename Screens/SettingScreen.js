@@ -14,10 +14,11 @@ import {
   SettingInstruction,
   SettingSOS,
 } from "../components";
-const SettingScreen = () => {
+const SettingScreen = ({ contacts }) => {
   const [toggleInfo, setToggleInfo] = useState(true);
   const [Countdown, setCountdown] = useState(0);
   const [isInstruction, setIsInstruction] = useState(false);
+  console.log(contacts);
   return (
     <View
       style={{
@@ -37,7 +38,11 @@ const SettingScreen = () => {
               toggleInfo={toggleInfo}
               setToggleInfo={setToggleInfo}
             />
-            <SettingSOS Countdown={Countdown} setCountdown={setCountdown} />
+            <SettingSOS
+              Countdown={Countdown}
+              setCountdown={setCountdown}
+              contacts={contacts}
+            />
             <SettingAboutus
               isInstruction={isInstruction}
               setIsInstruction={setIsInstruction}
