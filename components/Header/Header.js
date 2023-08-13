@@ -46,19 +46,20 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   ProfileImage: {
-    width: 40,
-    height: 40,
+    width: 35,
+    height: 35,
     borderRadius: 30,
     marginRight: 5,
   },
   welcomeText: {
-    fontSize: 18,
+    fontSize: 14,
     color: "gray",
     marginBottom: 2,
   },
   name: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "sans-serif",
   },
 });
 export default Header;

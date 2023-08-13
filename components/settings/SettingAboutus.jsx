@@ -19,7 +19,7 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
   };
 
   return (
-    <View style={{ marginTop: 10, flex: 1, marginBottom: 25 }}>
+    <View style={{ marginTop: 20, flex: 1, marginBottom: 20 }}>
       <View
         style={{
           flexDirection: "row",
@@ -27,7 +27,7 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
           marginHorizontal: 10,
         }}
       >
-        <Text style={{ color: "gray", fontSize: 17, fontWeight: 400 }}>
+        <Text style={{ color: "gray", fontSize: 15, fontWeight: 400 }}>
           ABOUT US
         </Text>
         {/* <Text style={{ color: "#4892a6", fontSize: 16, fontWeight: 500 }}>
@@ -52,8 +52,8 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
           onPress={() => setIsInstruction(true)}
         >
           {/* <Ionicons name="person" size={24} color="#4e9cb1" /> */}
-          <AntDesign name="eyeo" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 16 }}>View Instructions</Text>
+          <AntDesign name="eyeo" size={22} color="#4e9cb1" />
+          <Text style={{ fontSize: 14 }}>View Instructions</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("About")}
@@ -64,8 +64,8 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
             marginTop: 20,
           }}
         >
-          <Feather name="info" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 16 }}>About us</Text>
+          <Feather name="info" size={20} color="#4e9cb1" />
+          <Text style={{ fontSize: 14 }}>About us</Text>
         </TouchableOpacity>
         {/* <TouchableOpacity
           onPress={() => navigation.navigate("Policy")}
@@ -92,7 +92,11 @@ const SettingAboutus = ({ isInstruction, setIsInstruction }) => {
           {/* <Feather name="info" size={24} color="#4e9cb1" /> */}
           {/* <MaterialIcons name="privacy-tip" size={24} color="#4e9cb1" /> */}
           <MaterialCommunityIcons name="logout" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 16 }}>Log out</Text>
+          <Text
+            style={{ fontSize: 16, fontFamily: "sans-serif", fontWeight: 400 }}
+          >
+            Log out
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

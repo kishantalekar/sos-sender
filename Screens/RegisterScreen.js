@@ -42,7 +42,7 @@ const RegisterScreen = () => {
       navigation.navigate("MainTab");
     }
   }, []);
-  console.log(auth.currentUser !== null);
+
   return (
     <KeyboardAvoidingView
       style={styles.container}

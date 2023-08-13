@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
     // flex: 1,
   },
   emergencyText: {
-    fontSize: 26,
+    fontSize: 22,
     fontWeight: "bold",
   },
   desc: {
     color: "gray",
-    fontSize: 14,
+    fontSize: 12,
     padding: 10,
   },
   alertContainer: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   alertText: {
     color: "white",
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: 500,
   },
   alert: {

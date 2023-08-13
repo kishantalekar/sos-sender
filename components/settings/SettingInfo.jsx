@@ -37,7 +37,7 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
   }, []);
   useEffect(() => {}, []);
   return (
-    <View style={{ marginTop: 20, flex: 1 }}>
+    <View style={{ marginTop: 20, flex: 1, marginBottom: 10 }}>
       <View
         style={{
           flexDirection: "row",
@@ -45,11 +45,11 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
           marginHorizontal: 10,
         }}
       >
-        <Text style={{ color: "gray", fontSize: 17, fontWeight: 400 }}>
+        <Text style={{ color: "gray", fontSize: 15, fontWeight: 400 }}>
           YOUR INFORMATION
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-          <Text style={{ color: "#4892a6", fontSize: 14, fontWeight: 500 }}>
+          <Text style={{ color: "#4892a6", fontSize: 12, fontWeight: 500 }}>
             Edit
           </Text>
         </TouchableOpacity>
@@ -68,8 +68,8 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
         }}
       >
         <View style={{ flexDirection: "row", gap: 20 }}>
-          <Ionicons name="person" size={24} color="#4e9cb1" />
-          <Text style={{ fontSize: 16 }}>
+          <Ionicons name="person" size={22} color="#4e9cb1" />
+          <Text style={{ fontSize: 14 }}>
             {userName ? userName : "Update Your Name"}
           </Text>
         </View>
@@ -83,15 +83,15 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
         >
           <Foundation
             name="telephone"
-            size={24}
+            size={22}
             color="#4e9cb1"
             style={{ paddingLeft: 5 }}
           />
-          <Text style={{ fontSize: 16 }}>
+          <Text style={{ fontSize: 14 }}>
             {userMobileNumber ? `+91${userMobileNumber}` : "Add Your Number"}
           </Text>
         </View>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             gap: 20,
@@ -114,7 +114,7 @@ const SettingInfo = ({ toggleInfo, setToggleInfo }) => {
             size="small"
             onToggle={handleToggle}
           />
-        </View>
+        </View> */}
       </View>
     </View>
   );
