@@ -4,12 +4,12 @@ import { getAuth } from "firebase/auth";
 import { fireStore, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDX_QroZy5MkUjjnlwy0bWn0LtbziIyQGw",
-  authDomain: "laundry-app-af8f7.firebaseapp.com",
-  projectId: "laundry-app-af8f7",
-  storageBucket: "laundry-app-af8f7.appspot.com",
-  messagingSenderId: "249066700984",
-  appId: "1:249066700984:web:bfa12455d5e3ea2ada344d",
+  apiKey: "your api keys ",
+  authDomain: "your api keys ",
+  projectId: "your api keys ",
+  storageBucket: "your api keys ",
+  messagingSenderId: "your api keys ",
+  appId: "your api keys ",
 };
 
 // Initialize Firebase
